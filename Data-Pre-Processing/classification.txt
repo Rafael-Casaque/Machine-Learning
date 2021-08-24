@@ -1,0 +1,37 @@
+Classificação:
+
+Utiliza de atributos previsores para gerar classificações previsionárias 
+
+Cada registro pertence a uma determinada classe e possui um conjunto de atributos previsores. 
+Tendo como objetivo de encontrar relaçoes entre o atributo previsor e o meta
+
+Ex:
+
+| Histórico de Crédito | Dívida |  Garantia | Renda | Risco | 
+|       Ruim           |  Alta  |  Nenhuma  | 1.500 |  Alto |
+|    Desconhecido      |  Alta  |  Nenhuma  | 3.500 |  Alto |
+|    Desconhecido      |  Baixa |  Nenhuma  | 1.500 | Médio |
+|    Desconhecido      |  Baixa |  Nenhuma  | 4.500 | Médio |
+|    Desconhecido      |  Baixa |  Nenhuma  | 1.500 | Médio |
+|    Desconhecido      |  Baixa |  Nenhuma  | 3.500 | Médio |
+|        Ruim          |  Baixa | Adequeada | 3.500 | Médio |
+|        Ruim          |  Baixa |  Nenhuma  | 3.500 | Médio |
+|        Bom           |  Baixa | Adequeada | 1.500 | Baixa |
+|        Bom           |  Alta  |  Nenhuma  | 1.500 | Médio |
+|        Bom           |  Alta  |  Nenhuma  | 1.500 | Médio |
+|        Bom           |  Alta  |  Nenhuma  | 1.500 | Médio |
+
+Nesse caso, o Risco é gerado conforme os atributos anteriores
+
+Essa primeira tabela foi gerada manualmente e pode ser usada como base de treinamento para códigos automatizados
+
+Método Indutivo para Classificação:
+
+Fase 1:
+
+Conjunto de exemplos para treinamento => Sistema de aprendizado => Classificador
+
+Fase 2:
+
+Caso a ser classificado (meta desconhecido) => Classificador => Decisão
+
