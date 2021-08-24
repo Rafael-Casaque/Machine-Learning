@@ -40,3 +40,4 @@ print(x_credito[:,0].max()) #exibe o maior valor
 print(x_credito)
 
 
+
