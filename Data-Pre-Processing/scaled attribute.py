@@ -5,6 +5,8 @@ import plotly.express as px
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb 
+from sklearn.preprocessing import StandardScaler
+
 
 base_credito = pd.read_csv('Data-Pre-Processing\credit_data.csv') #realiza a importação do banco de dados
 base_credito.loc[base_credito['person_age']>99, 'person_age'] = 27.71804 #atribui a media às idades>99
@@ -27,3 +29,14 @@ print(x_credito[:,0].max()) #exibe o maior valor
 # Desvio padrão == quanto os valores variam quando comparados à média
 
 # A Padronização é mais indicada quando há registros muito fora do padrão (outliers)
+
+#Funções para o processo de padronização
+
+escala_creito = StandardScaler()
+#x_credito = escala_creito.fit_transform(x_credito[:,0:2]) com intervalo 
+x_credito = escala_creito.fit_transform(x_credito[:,[0,1,3,6,7,8,9]]) #sem intervalo, coontando coluna por coluna
+print(x_credito[:,0].min()) #exibe o menor valor
+print(x_credito[:,0].max()) #exibe o maior valor
+print(x_credito)
+
+
