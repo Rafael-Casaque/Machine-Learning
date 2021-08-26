@@ -1,0 +1,20 @@
+Aprendizado de Máquina
+
+Métodos Preditivos: (tentativa de fazer previsões a partir de um conjunto de atributos )
+
+- Classificação: Previsão de classes para cada um dos registros (Marketing Direto, liberação de crédito, filtro de Spam)
+- Regressão: Previsão de valores numéricos (Lucro da Empresa, Valor do Dólar, Risco de Investimento)
+
+Métodos Descritivos:
+
+- Associação: Encontrar padrões de associações ("quem comrpu esse, também comprou...", planejar catálogo de lojas)
+- Agrupamento: Análisar dados e definir grupos (segmentação de mercado, mandar propaganda pra pessoa certa)
+- Detecção de Desvios: método para detectar dados fora do padrão outliers (fraude em cartão de crédito, consumo + alto)
+- Padrões Sequênciais: Detecção de padrão de atividade (comprar o livro 1,2,3... navegação em sites)
+- Sumarização: técnica para filtragem de dados comuns, criação de perfis (bbom para segmentação de mercado)
+
+Os Métodos Preditivos estão inseridos na aprendizagem de máquina supervisionada
+
+Os Métodos Descritivos estão inseridos na aprendizagem de máquina não supervisionada
+
+Aprendizagem por Reforço: Métodos de apreendizagem causa-efeito ex: mapeamento de ambiente por robô com obstáculos
