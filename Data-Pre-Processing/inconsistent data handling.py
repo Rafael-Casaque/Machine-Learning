@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb 
 
-base_credito = pd.read_csv('Data pre-processing\credit_data.csv') #realiza a importação do banco de dados
+base_credito = pd.read_csv('Data-Science-and-Machine-Learning\Data-Pre-Processing\credit_data.csv') #realiza a importação do banco de dados
 
 #tratamento de valores inconsistentes 
 

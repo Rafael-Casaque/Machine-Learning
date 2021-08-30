@@ -4,7 +4,7 @@ import seaborn as sb
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-base_credito = pd.read_csv('Artificial Intelligence\data pre-processing\credit_data.csv') #faz a leitura do arquivo base
+base_credito = pd.read_csv('Data-Science-and-Machine-Learning\Data-Pre-Processing\credit_data.csv') #faz a leitura do arquivo base
 
 sb.countplot(x = base_credito['person_age']); #cria um gráfico de barras com o índice no eixo x
 plt.show() #faz a exibição do gráfico em uma janela

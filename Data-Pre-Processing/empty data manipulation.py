@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb 
 
-base_credito = pd.read_csv('Data-Pre-Processing\credit_data.csv') #realiza a importação do banco de dados
+base_credito = pd.read_csv('Data-Science-and-Machine-Learning\Data-Pre-Processing\credit_data.csv') #realiza a importação do banco de dados
 base_credito.loc[base_credito['person_age']>99, 'person_age'] = 27.71804 #atribui a media às idades>99
 
 print(base_credito.isnull()) #retorna false para valores preenchidos e true para valores vazios

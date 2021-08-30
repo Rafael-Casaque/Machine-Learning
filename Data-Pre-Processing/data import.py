@@ -4,7 +4,7 @@ import seaborn as sb
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-base_credito = pd.read_csv('Artificial Intelligence\data pre-processing\credit_data.csv') #faz a leitura do arquivo base
+base_credito = pd.read_csv('Data-Science-and-Machine-Learning\Data-Pre-Processing\credit_data.csv') #faz a leitura do arquivo base
 print(base_credito.head(10)) #exibe os 10 primeiros registros
 print(base_credito.tail(10)) #exibe os 10 últimos registros
 print(base_credito.describe()) #exibe a contagem para cada um dos atributos numéricos
