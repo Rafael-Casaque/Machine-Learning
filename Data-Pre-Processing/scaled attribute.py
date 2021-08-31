@@ -9,11 +9,10 @@ from sklearn.preprocessing import StandardScaler
 
 
 base_credito = pd.read_csv('Data-Science-and-Machine-Learning\Data-Pre-Processing\credit_data.csv') #realiza a importação do banco de dados
-base_credito.loc[base_credito['person_age']>99, 'person_age'] = 27.71804 #atribui a media às idades>99
-base_credito['loan_int_rate'].fillna(base_credito['loan_int_rate'].mean(), inplace=True) #substitui os valores vazios de loan_rate_int pela média 
-base_credito['person_emp_length'].fillna(base_credito['person_emp_length'].mean(), inplace=True) #substitui os valores vazios de person_emp_length pela média 
-x_credito = base_credito.iloc[:,0:10].values #atribui À variável x_credito apenas as colunas de 0-9 (:) indica todas as linhas
-y_credito = base_credito.iloc[:,10].values #atribui À variável y_credito apenas a colunas 11
+base_credito.loc[base_credito['age']<0, 'age'] = 40.92770044906149 #atualiza os valores inconsistentes com o valor da média somente do campo 'person_age
+base_credito['age'].fillna(base_credito['age'].mean(), inplace=True) #substitui os valores vazios de age pela média 
+x_credito = base_credito.iloc[:,1:4].values #atribui À variável x_credito apenas as colunas de 1-3 (:) indica todas as linhas
+y_credito = base_credito.iloc[:,4].values #atribui À variável y_credito apenas a colunas 4
 
 print(x_credito[:,0]) #exibe todas as linhas apenas da coluna 0 'person_age'
 print(x_credito[:,0].min()) #exibe o menor valor
@@ -32,11 +31,11 @@ print(x_credito[:,0].max()) #exibe o maior valor
 
 #Funções para o processo de padronização
 
-escala_creito = StandardScaler()
-#x_credito = escala_creito.fit_transform(x_credito[:,0:2]) com intervalo 
-x_credito = escala_creito.fit_transform(x_credito[:,[0,1,3,6,7,8,9]]) #sem intervalo, coontando coluna por coluna
-print(x_credito[:,0].min()) #exibe o menor valor
-print(x_credito[:,0].max()) #exibe o maior valor
+escala_credito = StandardScaler()
+x_credito = escala_credito.fit_transform(x_credito) # deixa os atributos na mesma escala
+print(x_credito[:,0].min()) #exibe o menor valor da coluna 0
+print(x_credito[:,1].min()) #exibe o maior valor da coluna 1 
+print(x_credito[:,2].min()) #exibe o maior valor da coluna 2 
 print(x_credito)
 
 
