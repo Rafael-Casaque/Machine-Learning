@@ -1,0 +1,93 @@
+Resumo:
+
+O algorítmo de Naïve Bayes possui uma abordagem probabilística, baseado no Teorema de Bayes
+
+Exemplos de aplicação: 
+
+- filtros de spam
+- mineração de emoções
+- separação de documentos
+
+O objetivo do algorítmo de Bayes é analisar uma base de dados histórica e gerar uma tabela de probabilidade.
+
+Para realizar as previsões, os dados são submetidos à tabela criada e assim, são geradas as classificações
+
+
+Aprendizagem do Algorítmo:
+
+  Dados históricos:                                                        Tabela Criada:
+
+________________________________
+|  histórico | Dívida |  Risco  |                                        | História do Crédito   |    Dívida    |      Garantias      |     Renda Anual      |
+|------------|--------|---------|                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|  
+|    Ruim    | Alta   | Alto    |                        Risco de Crédito|Boa:5 |Desco:5 |Ruim:4 |Alta:7|Baixa:7|Nenhuma:11|Adequada:3|<15: 3|15-35: 4|>35: 7|             |
+|Desconhecida| Alta   | Alto    |                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|
+|Desconhecida| Baixa  | Moderado|                            Alto 6/14   | 1/6  |  2/6   |  3/6  |  4/6 |  2/6  |    6/6   |    0     | 3/6  |  2/6   |  1/6 |
+|Desconhecida| Baixa  | Alto    |                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|
+|Desconhecida| Baixa  | Baixo   |                          Moderado 3/14 | 1/3  |  1/3   |  1/3  |  1/3 |  2/3  |    2/3   |   1/3    |  0   |  2/3   |  1/3 |  
+|Desconhecida| Baixa  | Baixo   |                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|   
+|    Ruim    | Baixa  | Alto    |                             Baixo 5/14 | 3/5  |  2/5   |   0   |  2/5 |  3/5  |    3/5   |   2/5    |  0   |   0    |  5/5 |
+|    Ruim    | Baixa  | Moderado|                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|
+|    Boa     | Baixa  | Baixo   |   
+|    Boa     | Alta   | Baixo   |                     - O atributo classificador sempre é colocado no começo, no caso "Risco de Crédito"
+|    Boa     | Alta   | Alto    |                     - Os valores do "Risco de Crédito são tirados dos dados hisstóricos, sendo o númerador a ocorrência e o denominador o total
+|    Boa     | Alta   | Moderado|                     - As frações são resultados de ocorrências, por exemplo 1/6 onde o risco alto tem histórico boa 
+|    Boa     | Alta   | Baixo   |                     - Dessa forma, a tabela é o resultado final para aprendizagem do algorítmo Bayes
+|    Ruim    | Alta   | Alto    |
+
+
+classificação do Algorítmo:
+
+- Para fazer a previsão, o algorítmo submete os dados na tabela criada
+
+Por exemplo:
+
+Cliente x
+
+Histórico: bom
+Dívida: Alta
+Garantia: Nenhuma
+Renda: >35
+
+Para a previsão, o algorítmo seleciona apenas a coluna compatível com os dados submetidos. Nesse caso, as colunas a serem usadas seriam 1,4,6,10 e ignora os restantes
+
+Com isso, será feita a seguinte conta:
+
+-  Probabilidade(alta) = 6/14 * 1/6 * 4/6 * 6/6 * 1/6 
+R: Probabilidade(alta) = 0,0079
+
+Cada valor é alocado de cada coluna, respeitando os dados do cliente x
+
+Esse cálculo é repetido com as outras probabilidades
+
+-  Probabilidade(moderada) = 3/14 * 1/3 * 1/3 * 2/3 * 1/3
+R: Probabilidade(moderada) = 0,0052
+
+-  Probabilidade(baixa) = 5/14 * 3/5 * 2/5 * 3/5 * 5/5
+R: Probabilidade(baixa) = 0,0514
+
+Comparando-se os três valores obtidos:
+
+- Probabilidade(alta):      0,0079
+- Probabilidade(moderada):  0,0052   
+- Probabilidade(baixa):     0,0514
+
+Dessa forma, o mais compatível com ese cliente, é a probabilidade baixa
+
+Para entender percentualmente, é feito da seguinte forma:
+
+Soma = Probabilidade(alta) + Probabilidade(moderada) + Probabilidade(baixa)
+
+ou seja: 0,0079 + 0,0052 + 0,0514 = 0,0645
+
+Para finalmente tirar a porcentagem:
+
+Probabilidade(alta)/Soma => 0,0079/0,0645*100 = 12,24%
+Probabilidade(moderada)/Soma => 0,0052/0,0645*100 = 8,06%
+Probabilidade(baixa)/Soma => 0,0514/0,0645*100 = 79,68%
+
+
+
+
+
+
