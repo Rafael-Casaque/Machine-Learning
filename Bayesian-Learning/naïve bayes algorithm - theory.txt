@@ -1,4 +1,4 @@
-Resumo:
+﻿Resumo:
 
 O algorítmo de Naïve Bayes possui uma abordagem probabilística, baseado no Teorema de Bayes
 
@@ -20,7 +20,7 @@ Aprendizagem do Algorítmo:
 ________________________________
 |  histórico | Dívida |  Risco  |                                        | História do Crédito   |    Dívida    |      Garantias      |     Renda Anual      |
 |------------|--------|---------|                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|  
-|    Ruim    | Alta   | Alto    |                        Risco de Crédito|Boa:5 |Desco:5 |Ruim:4 |Alta:7|Baixa:7|Nenhuma:11|Adequada:3|<15: 3|15-35: 4|>35: 7|             |
+|    Ruim    | Alta   | Alto    |                        Risco de Crédito|Boa:5 |Desco:5 |Ruim:4 |Alta:7|Baixa:7|Nenhuma:11|Adequada:3|<15: 3|15-35: 4|>35: 7|             
 |Desconhecida| Alta   | Alto    |                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|
 |Desconhecida| Baixa  | Moderado|                            Alto 6/14   | 1/6  |  2/6   |  3/6  |  4/6 |  2/6  |    6/6   |    0     | 3/6  |  2/6   |  1/6 |
 |Desconhecida| Baixa  | Alto    |                        ----------------|------|--------|-------|------|-------|----------|----------|------|--------|------|
@@ -85,6 +85,27 @@ Para finalmente tirar a porcentagem:
 Probabilidade(alta)/Soma => 0,0079/0,0645*100 = 12,24%
 Probabilidade(moderada)/Soma => 0,0052/0,0645*100 = 8,06%
 Probabilidade(baixa)/Soma => 0,0514/0,0645*100 = 79,68%
+
+
+Correção Laplaciana:
+
+Caso a tabela resulte em algum valor 0, é necessário adicionar mais registros até mudar esse valor.
+
+Pois, como as fórmulas envolvem multiplicação, a probabilidade também resultaria num valor nulo.
+
+
+Conclusão - Vantagens e Desvantagens:
+
+Vantagens:
+
+- É um algorítmo rápido, pois não requer muitos cálculos complexos.
+- Possui uma simplicidade de compreensão.
+- Pode trabalhar com muitos atributos, tendo um bom desempenho.
+- Também consegue fazer boas previsões com bases pequena (200,300 registros).
+
+Desvantagens:
+
+- Utiliza os atributos independentes, ele assume que um atributo não tem relação com outro.
 
 
 
