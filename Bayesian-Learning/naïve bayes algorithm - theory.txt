@@ -72,7 +72,7 @@ Comparando-se os três valores obtidos:
 - Probabilidade(moderada):  0,0052   
 - Probabilidade(baixa):     0,0514
 
-Dessa forma, o mais compatível com ese cliente, é a probabilidade baixa
+Dessa forma, o mais compatível com ese cliente, é a probabilidade baixa.
 
 Para entender percentualmente, é feito da seguinte forma:
 
