@@ -1,0 +1,220 @@
+Esse algorítmo, analisa os dados de entrada e gera, como aprendizado, uma árvore lógica de decisão, em esquema de fluxograma.
+
+Por exemplo:
+
+A partir da tabela histórica de risco de crédito, pode ser gerada a seguinte árvore de decisão
+                                
+                                     Renda
+                                    /  |    \
+                                   /   |>=15 \
+                          <15     /    |<35   \ >35
+                                 /     |       \
+                                /      |        \
+                               /    História     \ História
+                           [Alto]   Crédito        Crédito \
+                                   /   |   \          |\    \
+                                  /    |desc\         | \desc\            
+                             boa /     |     \ruim    |  \    \ruim
+                                /      |      \       |boa\    \ 
+                        [Moderado]     |      [alto]  |  [baixo]\ 
+                                       |              |          \  
+                                     Dívida         [baixo]       [moderado]
+                                      /  \
+                                 alta/    \baixa
+                                    /      \
+                                   /        \ 
+                                [alto]    [moderado]
+
+IMPORTANTE: Os atributos que aparecem no topo da árvore são classificados como mais importantes do que os que estão abaixo.
+Pois são eles que farão a filtragem primária dos registros. 
+
+Portanto, para realizar a previsão de um determinado registro, ele é submetido a essa árvore, respeitando as condições
+
+Exemplo:
+
+  cliente x
+- história: boa
+- dívida: alta
+- garantias: nenhuma
+- renda => 35
+
+Após ser submmetido à árvore de decisão, ele percorreria o seguinte caminho: Renda/>35/História/boa/[baixo]
+
+Dessa forma, esse cliente seria classificado como tendo risco baixo de inadimplência ao contratar o empréstimo
+
+
+
+Como o algorítmo faz a construção da árvore de decisão?
+
+Os algoritmos de Tree Decision, realizam a construção da árvore a partir de dois cálculos matemáticos: Entropia e Ganho de informação
+                                                                                 
+________________________________                                            c
+|  histórico | Dívida |  Risco  |          Fórmula Entropia => Entropy(S) = Σ - pi log2 pi                                
+|------------|--------|---------|                                          i=1
+|    Ruim    | Alta   | Alto    |          Cálculo de Entropia:
+|Desconhecida| Alta   | Alto    |               
+|Desconhecida| Baixa  | Moderado|          Frações de atributos de Risco: 
+|Desconhecida| Baixa  | Alto    |          - Alto (6/14)
+|Desconhecida| Baixa  | Baixo   |          - Moderado (3/14)
+|Desconhecida| Baixa  | Baixo   |          - Baixo (5/14)
+|    Ruim    | Baixa  | Alto    |
+|    Ruim    | Baixa  | Moderado|          Portanto, a entropia fica da seguinte forma:
+|    Boa     | Baixa  | Baixo   |          E(s) = - 6/14 * log(6/14;2) - 3/14 * log(3/14;2) - 5/14 * log(5/14;2) = 1,53
+|    Boa     | Alta   | Baixo   |           
+|    Boa     | Alta   | Alto    |          Cálculo do Ganho de Informação:
+|    Boa     | Alta   | Moderado|       
+|    Boa     | Alta   | Baixo   |          - História de Crédito possui 14 valores e 3 atributos:boa,desconhecida e ruim        
+|    Ruim    | Alta   | Alto    |          - boa (5/14)
+                                           - desconhecida (5/14)
+                                           - ruim (4/14)
+
+Desmembrando ainda mais: 
+
+História de Crédito boa pode gerar 3 classes: alta, moderada, baixa
+- alta (1/5)
+- moderada (1/5)
+- baixa (3/5)
+
+História de Crédito desconhecida pode gerar 3 classes: alta, moderada, baixa
+- alta (2/5)
+- moderada (1/5)
+- baixa (2/5)
+
+História de Crédito ruim pode gerar 3 classes: alta, moderada, baixa
+- alta (3/4)
+- moderada (1/4)
+- baixa (0)
+
+Após esses desmembramento, é necessário cálcular a entropia de cada uma:
+
+História de Crédito boa:            E(s) = - 1/5 * log(1/5;2) - 1/5 * log(1/5;2) - 3/5 * log(3/5;2) = 1,37    
+
+História de Crédito desconhecida:   E(s) = - 2/5 * log(2/5;2) - 1/5 * log(1/5;2) - 2/5 * log(2/5;2) = 1,52
+
+História de Crédito ruim:           E(s) = - 3/4 * log(3/4;2) - 1/4 * log(1/4;2) - 0 * log(0;2) = 0,81
+
+Após isso, faremos o cálculo do ganho de informação:
+
+Fórmula: Gain(S,A) = Entropy(S) - Σ  |Sv|/|S| Entropy(Sv)
+                            vev values(a)                                
+
+Portanto: Ganho(História) = 1,53 - (5/14*1,37)-(5/14*1,52)-(4/14*0,81) = 0,26
+
+________________________________________________________________________________________________________________________
+
+Cálculo de ganho de informação para dívida:
+
+Dívida possui 14 valores e 2 atributos: alta e baixa
+- alta (7/14)
+- baixa (7/14)
+
+Desmembrando:
+
+Divida alta:                E(s) = - 4/7 * log(4/7;2) - 1/7 * log(1/7;2) - 2/7 * log(2/7;2) = 1,38
+-risco alto (4/7)
+-risco moderado (1/7)
+-risco baixo (2/7)
+
+Divida baixa:               E(s) = - 2/7 * log(2/7;2) - 2/7 * log(2/7;2) - 3/7 * log(3/7;2) = 1,56
+-risco alto (2/7)
+-risco moderado (2/7)
+-risco baixo (3/7)
+
+Portanto: Ganho(Dívida) = 1,53 - (7/14*1,38)-(7/14*1,56) = 0,06
+
+Com isso, já podemo notar que o atributo História de Crédito tem mais relevÂncia do que o atributo dívida.
+
+________________________________________________________________________________________________________________________
+
+Cálculo de ganho de informação para garantias:
+
+Dívida possui 14 valores e 2 atributos: nenhuma e adequada
+- nenhuma (11/14)
+- adequada (3/14)
+
+Garantia Nenhuma:                E(s) = - 6/11 * log(6/11;2) - 2/11 * log(2/11;2) - 3/11 * log(3/11;2) = 1,44
+-risco alto (6/11)
+-risco moderado (2/11)
+-risco baixo (3/11)
+
+Garantia Adequada:               E(s) = - 0 * log(0;2) - 1/3 * log(1/3;2) - 2/3 * log(2/3;2) = 0,92
+-risco alto (0)
+-risco moderado (1/3)
+-risco baixo (2/3)
+
+Portanto: Ganho(Garantia) = 1,53 - (11/14*1,44)-(3/14*0,92) = 0,20
+
+________________________________________________________________________________________________________________________
+
+Cálculo de ganho de informação para renda:
+
+Renda possui 14 valores e 3 atributos: <15 entre 15-35 e >35
+- <15 (3/14)
+- 15-35 (4/14)
+- >35 (7/14)
+
+Renda <15:                E(s) = - 3/3 * log(3/3;2) - 0 * log(0;2) - 0 * log(0;2) = 0,00
+-risco alto (3/3)
+-risco moderado (0)
+-risco baixo (0)
+
+Renda 15-35:                E(s) = - 2/4 * log(2/4;2) - 2/4 * log(2/4;2) - 0 * log(0;2) = 1,00
+-risco alto (2/4)
+-risco moderado (2/4)
+-risco baixo (0)
+
+Renda >35:                E(s) = - 1/7 * log(1/7;2) - 1/7 * log(1/7;2) - 5/7 * log(5/7;2) = 1,15
+-risco alto (1/7)
+-risco moderado (1/7)
+-risco baixo (5/7)
+
+Portanto: Ganho(Garantia) = 1,53 - (3/14*0)-(4/14*1)-(7/14*1,15) = 0,66
+
+________________________________________________________________________________________________________________________
+
+Dessa forma, após fazer o cálculo do ganho de informação de cada um dos atributos, teremos:
+
+Renda                       =       0,66
+História de Crédito         =       0,26
+Garantias                   =       0,20
+Dívida                      =       0,06
+
+Assim, entendemos que a renda deve estar na raiz da árvore de decisão pois ela tem o maior valor de ganho de informação
+
+Depois de alocar um atributo na raiz da árvore, é necessário repetir todos os cálculos para saber qual a proxima sub-raiz
+
+________________________________________________________________________________________________________________________
+
+Poda em árvore de decisão:
+
+"após gerar a árvore completa, faz uma poda pra tirar a parte irrelevante"
+
+- Bias (viés) = Consiste em erros por classificação incorreta 
+
+- Variância = Consiste em erros por sensibilidade pequena a mudanças na base de treinamento
+pode levar ao overfitting, quando o algorítmo se acostuma muito com a base de treinamento e da erro na base de teste
+
+________________________________________________________________________________________________________________________
+
+Conclusão:
+
+Vantagens e Desvantagens de se usar árvores de decisão:
+
+Vantagens: 
+
+- Fácil interpretação
+- Não é necessário usar padronização ou normalização dos dados (esscalonamento)
+- É rápido para fazer a classificação de novos registros
+
+Desvantagens:
+
+- Pode gerar árvores muito complexas e gerar overfitting
+- Pequenas mudanças nos dados podem mudar as árvores (poda pode ser uma solução)
+- Problema NP-Completo para construir a árvores
+
+As árvores de decisão tem perdido bastante espaço por outros algorítmos.
+
+Para isso, foram criados upgrades como o random forest que melhoram o desempenho da árvore de decisão (usado no kinect) 
+
+
+
