@@ -1,0 +1,29 @@
+As florestas randomicas são melhorias implementadas no algorítmo de árvore de decisão para conseguir melhores resultados.
+
+A idéia é, como o proprio nome diz, utilizar mais de uma árvore para gerar um classificador, Após isso, é feito a comparação dos resultados
+
+A intuição de funcionamento dessa técnica faz parte do Ensemble Learning, aprendizado em conjunto.
+
+O Ensemble Learning é como um chefe que consulta diversos profissionais antes de tomar uma decisão final.
+
+Apenas uma árvore de decisão pode ser insuficiente para bancos mais complexos.
+
+Para a decisão final usaremos a média dos resultados das árvores ou os votos da maioria.
+
+IMPORTANTE: Quanto mais árvores forem criadas, maior é a chance de ocorrer um Overfiting
+
+Overfiting = (a árvore se acostuma demais com o banco e não é eficaz com novos dados)
+
+"Randomica" = escolhe de forma aleatoria x atributos para comparação da métrica de impureza/pureza
+
+Com isso, cada árvore usará um conjunto de atributos específicos e excluindo outro.
+
+Exemplo:
+
+Uma floresta randomica com 3 árvores de decisão limitadas a 3 atributos por árvore
+
+árvore 1 - utiliza os atributos renda, dívida e historia
+árvore 2 - utiliza os atributos idade, dívida e historia
+árvore 3 - utiliza os atributos renda, dívida e idade
+
+
