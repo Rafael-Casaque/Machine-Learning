@@ -1,0 +1,53 @@
+Esse algorítmo faz a leitura da base de dados de treinamento e gera uma série de regras para prever as classes
+
+Após isso, as previsões são feitas com base nas regras criadas previamente.
+
+Por exemplo:
+
+Se Renda = > 35k E História de Crédito = boa                Resultado: Risco de crédito = baixo 
+Se Renda = > 35k E História de Crédito = desconhecida       Resultado: Risco de crédito = baixo 
+Default (padrão)                                            Resultado: Risco de crédito = alto
+
+_______________________________________________________________________________________________________________________
+
+Algoritmo OneR (uma regra)
+
+Esse Algoritmo parte do pressuposto que será usada, primeiramente, registros simples.
+
+A ideia desse algoritmo é usar apenaas um atributo para gerar todas as classificações, esse atributo é escolhido com base no menor erro.
+
+por exemplo:
+
+Se História de Crédito boa então risco alto: 1 registro se encaixa nessa regra
+Se História de Crédito boa então risco moderado: 1 registro se encaixa nessa regra
+Se História de Crédito boa então risco baixo: 3 registro se encaixa nessa regra
+
+Esse teste é utilizado com todos as condições de todos os atributos e por fim é utilizada a regra do atributo que tiver menor erro.
+
+_______________________________________________________________________________________________________________________
+
+Algoritmo Prism
+
+Esse algoritmo é muito semelhante com o OneR, no entanto, ele trabalha com regras compostas, uma para cada atributo.
+
+Exemplo:
+
+Parte-se da seguinte regra:     SE ? Então Risco = alto
+
+E com isso, buscaremos qual condição de qual atributo tem maior ocorrência para risco alto, no caso é garantia = nenhuma.
+
+A partir disso, a pergunta é refeita:   SE garantia = nenhuma E ? então Risco = alto
+
+E com isso, novamente deve ser procurado o atributo com maior ocorrência para risco alto que támbem tenha garantia = nenhuma.
+
+Esse passo é feito consecutivamente até percorrer todos os atributos que geram o risco alto.
+
+Após isso é necessário fazer a geração de regra das outras condições de risco de crédito (médio e baixo).
+
+
+
+Algoritmos de Árvores de Decisão vs Algoritmos de aprendizagem por regras:
+
+Os algoritmos de aprendizagem de regra exigem um maior tempo de execução para realizar o processamento dos dados.
+
+Em geral, os algoritmos de árvores de decisão apresentam melhores redultados quando comparados à aprendizagem por regras.
