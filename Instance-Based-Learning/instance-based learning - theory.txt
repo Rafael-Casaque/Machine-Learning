@@ -1,0 +1,41 @@
+A aprendizagem baseada em instâncias
+
+Essa aprendizagem é baseada no algoritmo kNN (k-Nearest Neighbour) - Vizinhos mais próximos
+
+exemplo:
+
+
+      x    y    y
+    x   ?     
+             y
+        x
+  x              y
+
+  
+  Dado os registros acima, deve-se determinar a qual classe o elemento ? pertence, x ou y.
+
+  Para isso, é feito o cálculo da distância entre o elemento ? e todos os outros.
+
+  K é o parâmetro configurado pelo algoritmo que irá determinar qual a quantidade de vizinhos mais próximos serão analisados.
+
+  Nesse caso:
+
+  se K=1 ? iria pertencer à classe x por estar mais próximo dela.
+  Se K=2 iria ocorrer um empate, pois o mai próximo é x e o segundo mais próximo é y. Pode ser feito um desempate considerando o menor valor.
+  se K=3 o mais próximo seria x, o segundo y e o terceiro x. Portanto, ele seria classificado como x pois é a maioria.
+
+  Portanto, a classificação estará intrinsecamente ligada ao valor de K.
+
+  
+  ___________________________________________________________________________________________________________________________
+  
+  
+  A maioria dos algoritmo de aprendizagem de máquina constroem um modelo de regras e após isso os dados são descartados.
+
+  No caso dos algoritmo baseados em instâncias ele simplesmente armazena os exemplos de treinamento.
+
+  Dessa forma, não existe um treinamento verdadeiro, ele simplesmente faz comparações de distâncias.
+
+  A previsão é feita apenas quando uma nova instância deve ser classificada.
+
+  OS KNN são considerados métodos Lazy (preguiçoso) por não gerar um modelo.
