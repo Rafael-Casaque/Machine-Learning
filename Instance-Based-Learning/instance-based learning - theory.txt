@@ -39,3 +39,88 @@ exemplo:
   A previsão é feita apenas quando uma nova instância deve ser classificada.
 
   OS KNN são considerados métodos Lazy (preguiçoso) por não gerar um modelo.
+
+  ___________________________________________________________________________________________________________________________
+
+  Como é realizado o cálculo da distância?
+
+  A distância é calculada a partir da fórmula da distância euclidiana:
+
+             p
+  DE(x,y) = √Σ(xi-yi)²
+             i 
+
+  Na prática:
+
+  temos dois vetores x e y
+
+  x = 5,7,9
+  y = 5,5,5
+
+  O primeiro passo a ser realizado é a subtração de xi por yi como indicado na fórmula:
+
+  - 5-5 = 0
+  - 7-5 = 2
+  - 9-5 = 4
+
+  Após isso, é necessário elevar cada resultado ao quadrado:
+
+  - 5-5 = 0² = 0
+  - 7-5 = 2² = 4
+  - 9-5 = 4² = 16
+
+  Depois, é necessário fazer o somátorio de todos os valores obtidos:
+
+  - 0 + 4 + 16 = 20
+
+  O último passo é obter o valor da raiz quadrada do número obtido:
+
+  - √20 = 2√5 = 4,47
+
+  Com isso, temos que a distância euclidiana entre x e y é de 4,47.
+
+  Obs: Quanto menor o valor da distância, mais próximos estão esses elementos e contrário também é verídico.
+
+  ___________________________________________________________________________________________________________________________
+
+  Como é feita a classificação de um novo registro?
+
+  exemplo:
+
+ ___________________________________________________________________________
+|          Filme          | Violência | Romance | Ação  | Comédia | Classe  |
+|-------------------------|-----------|---------|-------|---------|---------|
+|    Invocação do Mal     |    0,6    |   0,0   |  0,3  |   0,0   | Terror  | 
+|-------------------------|-----------|---------|-------|---------|---------|
+|    Floresta Maldita     |    0,9    |   0,0   |  0,5  |   0,1   | Terror  | 
+|-------------------------|-----------|---------|-------|---------|---------|
+|  Meu passado me condena |    0,1    |   0,2   |  0,1  |   0,9   | Comédia |   
+|-------------------------|-----------|---------|-------|---------|---------|
+|    Tirando o atraso     |    0,0    |   0,2   |  0,2  |   0,8   | Comédia |   
+|-------------------------|-----------|---------|-------|---------|---------|
+
+Agora temos um novo filme que deve ser classificado. Ele tem as seguintes características:
+
+Violência:  0,8
+Romance:    0,1
+Ação:       0,5
+Comédia:    0,0
+
+Com isso, o algoritmo kNN fará a distância euclidiana de cada atributo:
+
+Filme ? x Invocação do Mal => (0,8-0,6) + (0,1-0,0) + (0,5-0,3) + (0,0-0,0)
+Filme ? x Invocação do Mal =>   (0,2)²   +   (0,1)²   +   (0,2)²   + (0,0)²
+Filme ? x Invocação do Mal =>   (0,04)   +   (0,01)   +   (0,04)   + (0,0)
+Filme ? x Invocação do Mal =>   0,09 => √0,09 = 0,3
+
+Portanto, a distância euclidiana entre o filmo a ser classificado e invocação do mal é de 0,3.
+
+
+Filme ? x Meu passado me condena => (0,8-0,1) + (0,1-0,2) + (0,5-0,1) + (0,0-0,9)
+Filme ? x Meu passado me condena =>   (0,7)²   +   (0,1)²   +   (0,4)²   + (0,9)²
+Filme ? x Meu passado me condena =>   (0,49)   +   (0,01)   +   (0,16)   + (0,81)
+Filme ? x Meu passado me condena =>   1,47 => √0,09 = 1,21
+
+Portanto, a distância euclidiana entre o filmo a ser classificado e Meu passado me condena é de 1,21.
+
+Com isso o filme ? seria enquadrado como terror, por estar mais próxima dessa classe.
