@@ -123,4 +123,37 @@ Filme ? x Meu passado me condena =>   1,47 => √0,09 = 1,21
 
 Portanto, a distância euclidiana entre o filmo a ser classificado e Meu passado me condena é de 1,21.
 
+Esse processo é realizado com todos os registros, obtendo todas as distâncias euclidianas.
+
 Com isso o filme ? seria enquadrado como terror, por estar mais próxima dessa classe.
+
+___________________________________________________________________________________________________________________________
+
+É necessário que os dados dos registros estejam organizados na mesma escala, para uma maior compreensão do algoritmo.
+
+Quando não é feito o escalonamento, um determinado atributo pode se sobressair em detrimento do outro.
+
+Para isso, há duas maneiras diferentes de fazer o escalonamento:
+
+Normalização, através da seguinte fórmula:
+
+x = x - min(x) / max(x) - min(x)
+
+Outra maneira é fazendo a padronização, através da fórmula:
+
+x = x-média(x) / desvio padrão(x)
+
+___________________________________________________________________________________________________________________________
+
+Conclusões:
+
+- O kNN é considerado um algoritmo simples, porém, com bom desempenho
+- Ele é indicado quando o relacionamento entre as características é complexo
+- Ao se utilizar um valor muito pequeno para K, é possível que os outliers (dados muito fora da normalidade) atrapalhem o desempenho.
+- Por outro lado, ao se utilizar um valor muito alto para K, é possível que ocorra um overfitting 
+- O valor default 3 ou 5, tem a tendência de ter bons resultados.
+- Esse algoritmo é lento para fazer as classificações, pois ele precisa fazer todas as associações.
+- Além da distância euclidiana, podem ser usadas outras métricas:
+      - Coeficiente de Pearson 
+      - Índice de Tanimoto
+      - City Block
