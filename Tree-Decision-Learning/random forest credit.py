@@ -28,9 +28,9 @@ cm.score(x_credito_teste,y_credito_teste)
 
 plt.show()
 
-# Nesse gráfico
+# Nesse gráfico:
 
-#(<=50k,<=50k) são pessoas que ganham menos de 50k e foram classificados como tal
-#(>=50k,<=50k) são pessoas que ganham menos de 50k e foram classificados como ganhando mais
-#(<=50k,>=50k) são pessoas que não ganham menos de 50k e foram classificados como tal
-#(>=50k,>=50k) são pessoas que ganham mais de 50k e foram classificados como tal
+# coordenada (0,0) pessoas que pagam e foram classificadas como tal
+# coordenada (0,1) pessoas que não pagam e foram classificadas como pagantes
+# coordenada (1,0) pessoas que pagam e foram classificadas como não pagantes
+# coordenada (1,1) pessoas que não pagam e foram classificadas como tal

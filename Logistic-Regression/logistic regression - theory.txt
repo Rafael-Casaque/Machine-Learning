@@ -14,3 +14,36 @@ por exemplo:
     |
 
 Portanto, seu modelo de treinamento criado, é o posicionamento linear desse 'S' no gráfico.
+
+______________________________________________________________________________________________
+
+Para realizar o treinamento é usada a função sigmoide
+
+p = 1/1+e^-y
+
+onde e é o número de Euler = 2,71...
+p é o resultado da previsão, sendo 1 = 100% 
+p sempre estará no intervalo entre 0 e 1
+
+O algoritmo de regressão logística está diretamente ligado ao cálculo de regressão linear.
+
+Cálculado a partir da equação da reta:
+
+y = b0 + b1 * x  
+
+esse resultado y será reaplicado na função sigmoide p = 1/1+e^-y
+
+Finalmente, para terminar o treinamento é necessário realizar a tranformação "logit", com a seguinte fórmula:
+
+log(p/1-p) = b0 + b1 * x
+
+______________________________________________________________________________________________
+
+Para realizar a classificação o algoritmo faz a projeção dos valores e vê em qual parte da linha cairão as classes.
+
+Essa projeção é feita a partir da linha 'S' criada.
+
+O algoritmo de regressão logística retorna uma probabilidade da classe sendo 50% o valor default.
+
+Ex: se x>50% classe=0
+    se x<50% classe=1
