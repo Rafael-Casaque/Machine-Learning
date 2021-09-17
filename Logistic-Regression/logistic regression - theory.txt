@@ -1,0 +1,16 @@
+Apesar do nome 'regressão logística', esse também é um algorítmo de classificação, onde será encontrado um previsor descritivo.
+
+A classificação é dada a partir de rótulos enquanto a regressão são números de atributos.
+
+Esse algoritmo utiliza técnicas da regressão linear, uma função importante a ser utilizada é a função sigmoide.
+
+por exemplo:
+              ___________
+1   |        /***********
+    |       /
+    | _____/
+0   | ***********
+    |_____________________ idade
+    |
+
+Portanto, seu modelo de treinamento criado, é o posicionamento linear desse 'S' no gráfico.
