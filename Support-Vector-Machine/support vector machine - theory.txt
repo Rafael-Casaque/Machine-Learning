@@ -1,0 +1,77 @@
+Máquina de vetor de suporte (SVM)
+
+Esse algoritmo costuma superar em geral o resultado dos algoritmos anterior (nayve bayes, tree decision, kNN)
+
+Consegue resolver tarefas complexas: reconhecimento de caractere, voz, imagens...
+
+Sua aprendizagem é através de hiperplanos de separação com margem máxima.
+
+exemplo:
+
+
+| x x  /  /  /  y
+|x   x/  /  /y
+|  x / x/  /   y
+|x  /  / y/     y
+|  / x/  /   y
+| /  / y/     y
+|__________________________
+
+A linha central orienta a divisão e os vetores laterais geram um range de tolerância, para gerar generalizações.
+
+Um elemento que está dentro desse vetor ainda é da determinada classe, porém, com características muito semelhante à outra.
+
+Então, seu objetivo é escolher a melhor reta e sua margem máxima de vetores de suporte.
+
+Para realizar a criação dessa margem, é usada o conceito de Convex Hulls (Envoltória/Casca Convexa)
+
+Conceitos Importantes: Erro e Custo
+
+|     0       /
+| 0         1/  1
+|       0   /       1
+|    0     /  1
+|  0      /0     1
+|      0 /         1
+|__________________________
+
+Nessa divisão, há dois registros com classes classificadas em locais errados.
+
+É utilizada uma variável a para medir a distância entre a reta principal e o registro, quanto maior essa distância maiores serão os erros.
+
+Ou seja, a função dessa algoritmo é obter o menor valor possível da variável a, através de uma melhor reta.
+
+É importante entender a diferença entre elementos linearmente separáveis e elementos não-linearmente separáveis
+
+Exemplo:
+
+| 1   1  /  0           | 0  1  1
+|    1 / 0              | 1    1
+|  1 /   0              |   0    0
+|  / 0   0              |0  1   1
+|/_____________         |_____________
+
+      1                       2
+
+No primeiro gráfico, é possível realizar a separação das classes, através de uma reta. No entanto, no segundo não é possível.
+
+Em casos como esse, é utilizado o Kernel Trick:
+
+Onde os dados são alocados a locais diferentes, tornando possível a realização da separação linear.
+
+Entre as funções de Kernel Trick estão: Linear, Gaussian, Polynomial, Tangent Hyperbolic. Cada uma com uma função específica.
+
+Os algoritmos de SVM também conseguem criar novos atributos, com base nos já existentes, tendo assim, mais uma forma de divisão de classes.
+
+Vantangens das Máquinas de vetores de suporte:
+
+- Não é muito influênciado por ruidos (outliers)
+- pode ser utilizado tanto para classificação quanto regressão.
+- Aprende conceitos não presentes nos dados originais.
+- Mais fácil do que as Redes Neurais.
+
+Desvantagens:
+
+- É necessário testar vários parâmetros diferentes para encontrar o melhor resultado.
+- Pode ser bastante lento por conta das complexidades dos cálculos.
+- É um método Black Box, não é possível visualizar seu modelo de aprendizado.
