@@ -29,3 +29,5 @@ cm.fit(x_credito_treinamento, y_credito_treinamento)
 cm.score(x_credito_teste,y_credito_teste)
 
 plt.show()
+
+print(classification_report(y_credito_teste,previsoes))
